@@ -3,10 +3,10 @@ using namespace std;
 int main() {
 	setlocale(0, "");
 	int n;
-	cout << "Ââåäèòå ÷èñëî n: ";
+	cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾ n: ";
 	cin >> n;
 	if (n < 1) {
-		cout << "×èñëî n äîëæíî áûòü >= 1" << endl;
+		cout << "Ğ§Ğ¸ÑĞ»Ğ¾ n Ğ´Ğ¾Ğ»Ğ¶Ğ½Ğ¾ Ğ±Ñ‹Ñ‚ÑŒ >= 1" << endl;
 		return 1;
 	}
 	double num;
@@ -15,7 +15,7 @@ int main() {
 	bool num1 = true;
 	
 	for (int i = 1; i <= n; i++) {
-		cout << "Ââåäèòå ÷èñëî " << i << ": ";
+		cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‡Ğ¸ÑĞ»Ğ¾ " << i << ": ";
 	cin >> num;
 	sum += num;
 	if (num1) {
@@ -29,8 +29,8 @@ int main() {
 	}
 }
 	double ave = sum/n;
-	cout << "Ñğåäíåå àğèôìèòè÷åñêîå = " << ave << endl;
-	cout << "Ìèíèìàëüíîå çíà÷åíèå = " << min << endl;
-	cout << "Ìàêñèìàëüíîå çíà÷åíèå = " << max << endl;
+	cout << "Ğ¡Ñ€ĞµĞ´Ğ½ĞµĞµ Ğ°Ñ€Ğ¸Ñ„Ğ¼Ğ¸Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¾Ğµ = " << ave << endl;
+	cout << "ĞœĞ¸Ğ½Ğ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ = " << min << endl;
+	cout << "ĞœĞ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ = " << max << endl;
 	return 0;
 }
