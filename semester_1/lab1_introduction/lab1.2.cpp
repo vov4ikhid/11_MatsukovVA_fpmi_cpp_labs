@@ -3,14 +3,14 @@
 using namespace std;
 
 int main() {
-	setlocale(LC_ALL, "RU");
+	setlocale(0, "");
 	int n;
-	cout << "Ââåäèòå ÷èñëî n: ";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã·Ã¨Ã±Ã«Ã® n: ";
 	cin >> n;
 	int sum = 0;
 	long long work = 1;
 	if (n < 1) {
-		cout << "n äîëæíî áûòü >= 1" << endl;
+		cout << "n Ã¤Ã®Ã«Ã¦Ã­Ã® Ã¡Ã»Ã²Ã¼ >= 1" << endl;
 		return 1;
 	}
 	for (int i = 1; i <= n; i++) {
@@ -21,8 +21,9 @@ int main() {
 			sum += i;
 		}
 	}
-	cout << "Ñóììà âñåõ íå÷¸òíûõ ÷èñåë ðàâíà: " << sum << endl;
-	cout << "Ïðîèçâåäåíèå âñåõ ÷¸òíûõ ÷èñåë ðàâíî: " << work << endl;
+	cout << "Ã‘Ã³Ã¬Ã¬Ã  Ã¢Ã±Ã¥Ãµ Ã­Ã¥Ã·Â¸Ã²Ã­Ã»Ãµ Ã·Ã¨Ã±Ã¥Ã« Ã°Ã Ã¢Ã­Ã : " << sum << endl;
+	cout << "ÃÃ°Ã®Ã¨Ã§Ã¢Ã¥Ã¤Ã¥Ã­Ã¨Ã¥ Ã¢Ã±Ã¥Ãµ Ã·Â¸Ã²Ã­Ã»Ãµ Ã·Ã¨Ã±Ã¥Ã« Ã°Ã Ã¢Ã­Ã®: " << work << endl;
 
 	return 0;
+
 }
