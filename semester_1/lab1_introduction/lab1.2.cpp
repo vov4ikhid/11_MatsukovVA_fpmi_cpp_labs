@@ -5,7 +5,7 @@ using namespace std;
 int main() {
 	setlocale(0, "");
 	int n;
-	cout << "Введите число n: ";
+	cout << "Enter integer n: ";
 	cin >> n;
 	int sum = 0;
 	long long work = 1;
