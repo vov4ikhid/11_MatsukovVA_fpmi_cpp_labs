@@ -23,7 +23,7 @@ int main() {
 				rev_sq = rev_sq * 10 + j_sq % 10;
 			}
 			if (sq == rev_sq) {
-				std::cout << sq << " - square of " << i << std::endl;
+				std::cout << i << " - (" << i << "^2 = " << sq << ")" << std::endl;
 			}
 		}
 	}
