@@ -1,10 +1,10 @@
 #include<iostream>
-using namespace std;
+
 int main() {
 	setlocale(0, "");
-	int n1[] = { 5, 6, 10, 100, 200, 500, 1000 };	
+	int n1[] = { 5, 6, 10, 100, 200, 500, 1000 };
 	long long s = 0;
-	cout << "s = 1^1 + 2^2 + ... + n^n" << endl;
+	std::cout << "s = 1^1 + 2^2 + ... + n^n" << std::endl;
 	for (int k = 0; k < 7; k++) {
 		int n = n1[k];
 		for (int i = 1; i <= n; i++) {
@@ -14,7 +14,7 @@ int main() {
 			}
 			s += power;
 		}
-		cout  << "s = " << s << ", при n = " << n << endl;
+		std::cout << "s = " << s << ", if n = " << n << std::endl;
 	}
 	// такие ответы для большик чисел получаютя, потому что даже диапазон long long не выдерживает такие больжи значения
 	return 0;
