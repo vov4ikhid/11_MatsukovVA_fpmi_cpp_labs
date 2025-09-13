@@ -5,13 +5,16 @@ using namespace std;
 int main() {
 	setlocale(0, "");
 	int n;
-	cout << "Enter integer n: ";
-	cin >> n;
+	std::cout << "Enter number n: ";
+	if (!(std::cin >> n)) {
+		std::cout << "Error!!!";
+		std::exit(1);
+	}
 	int sum = 0;
 	long long work = 1;
 	if (n < 1) {
-		cout << "n должно быть >= 1" << endl;
-		return 1;
+		std::cout << "n must be >= 1" << std::endl;
+		std::exit(1);
 	}
 	for (int i = 1; i <= n; i++) {
 		if (i % 2 == 0) {
@@ -21,8 +24,8 @@ int main() {
 			sum += i;
 		}
 	}
-	cout << "Сумма всех нечётных чисел равна: " << sum << endl;
-	cout << "Произведение всех чётных чисел равно: " << work << endl;
+	std::cout << "The sum of all odd numbers is: " << sum << std::endl;
+	std::cout << "The product of all even numbers is equal to: " << work << std::endl;
 
 	return 0;
 }
