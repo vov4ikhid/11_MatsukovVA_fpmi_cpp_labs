@@ -1,20 +1,23 @@
-#include<iostream>
-using namespace std;
+}#include<iostream>
+
 int main() {
 	setlocale(0, "");
 	int n;
-	cout << "Введите число n: ";
-	cin >> n;
-	if (n < 1) {
-		cout << "Число n должно быть >= 1!!!" << endl;
-		return 1;
+	std::cout << "Enter number n: ";
+	if (!(std::cin >> n)) {
+		std::cout << "Error!!!";
+		std::exit(1);
 	}
-		int sum = 0;
-		for (int i = 0; i <= n; i++) {
-			if (i % 2 == 1) {
-				sum += i;
-			}
+	if (n < 1) {
+		std::cout << "Number n must be >= 1!!!" << std::endl;
+		std::exit(1);
+	}
+	int sum = 0;
+	for (int i = 0; i <= n; i++) {
+		if (i % 2 == 1) {
+			sum += i;
 		}
-		cout << "Сумма всех нечётных чисел: " << sum;
+	}
+	std::cout << "The sum of all odd numbers: " << sum;
 	return 0;
 }
