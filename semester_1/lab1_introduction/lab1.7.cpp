@@ -1,36 +1,42 @@
 #include <iostream>
-using namespace std;
+
 int main() {
 	setlocale(0, "");
 	int n;
-	cout << "Введите число n: ";
-	cin >> n;
+	std::cout << "Enter number n: ";
+	if (!(std::cin >> n)) {
+		std::cout << "Error!!!";
+		std::exit(1);
+	}
 	if (n < 1) {
-		cout << "Число n должно быть >= 1" << endl;
-		return 1;
+		std::cout << "Number n must be >= 1" << std::endl;
+		std::exit(1);
 	}
 	double num;
 	double min, max;
 	double sum = 0;
 	bool num1 = true;
-	
+
 	for (int i = 1; i <= n; i++) {
-		cout << "Введите число " << i << ": ";
-	cin >> num;
-	sum += num;
-	if (num1) {
-		min = num;
-		max = num;
-		num1 = false;
+		std::cout << "Enter number: " << i << ": ";
+		if (!(std::cin >> num)) {
+			std::cout << "Error!!!";
+			std::exit(1);
+		}
+		sum += num;
+		if (num1) {
+			min = num;
+			max = num;
+			num1 = false;
+		}
+		else {
+			if (num < min) min = num;
+			if (num > max) max = num;
+		}
 	}
-	else {
-		if (num < min) min = num;
-		if (num > max) max = num;
-	}
-}
-	double ave = sum/n;
-	cout << "Среднее арифмитическое = " << ave << endl;
-	cout << "Минимальное значение = " << min << endl;
-	cout << "Максимальное значение = " << max << endl;
+	double ave = sum / n;
+	std::cout << "Arithmetic mean = " << ave << std::endl;
+	std::cout << "Minimum value = " << min << std::endl;
+	std::cout << "Maximum value = " << max << std::endl;
 	return 0;
 }
