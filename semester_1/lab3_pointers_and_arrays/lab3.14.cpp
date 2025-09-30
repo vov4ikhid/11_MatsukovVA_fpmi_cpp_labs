@@ -4,15 +4,24 @@
 int main() {
 	int n;
 	std::cout << "Enter the number of array elements: ";
-	std::cin >> n;
+	if (!(std::cin >> n)) {
+		std::cout << "Error entering a number";
+		std::exit(1);
+	}
 	std::vector <double> a(n);
 	std::cout << "Enter " << n << " real numbers: " << "\n";
 	for (int i = 0; i < n; i++) {
-		std::cin >> a[i];
+		if (!(std::cin >> a[i])) {
+			std::cout << "Error entering a number";
+			std::exit(1);
+		}
 	}
 	double P;
 	std::cout << "Enter P: ";
-	std::cin >> P;
+	if (!(std::cin >> P)) {
+		std::cout << "Error entering a number";
+		std::exit(1);
+	}
 	int count_after_P = 0;
 	for (int i = 0; i < n; i++) {
 		if (a[i] > P) {
