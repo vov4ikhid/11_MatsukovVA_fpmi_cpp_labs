@@ -6,8 +6,8 @@ int main() {
     
     std::cout << "Enter the number of array elements: ";
     if (!(std::cin >> n) || n <= 0) {
-        std::cout << "Error entering a number";
-        return 1;
+        std::cout << "Error!";
+        std::exit(1);
     }
   
     int* a = new int[n];
@@ -15,8 +15,8 @@ int main() {
     std::cout << "Enter " << n << " real numbers: " << "\n";
     for (int i = 0; i < n; i++) {
         if (!(std::cin >> a[i])) {
-            std::cout << "Error entering a number";
-            return 1;
+            std::cout << "Error!";
+            std::exit(1);
         }
     }
 
@@ -61,7 +61,10 @@ int main() {
 
     int N;
     std::cout << "Enter number N: ";
-    std::cin >> N;
+    if (!(std::cin >> N)) {
+        std::cout << "Error!";
+        std::exit(1);
+    }
 
     int cur_pos = 0;
     for (int i = 0; i < n; i++) {
