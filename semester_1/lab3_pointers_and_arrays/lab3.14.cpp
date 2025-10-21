@@ -9,14 +9,14 @@ int main() {
     std::cout << "Enter the number of array elements(max = 1000): ";
     if (!(std::cin >> n) || n <= 0 || n > MAX_SIZE) {
         std::cout << "Error entering a number";
-        return 1;
+        std::exit(1);
     }
 
     std::cout << "Enter " << n << " real numbers: " << "\n";
     for (int i = 0; i < n; i++) {
         if (!(std::cin >> a[i])) {
             std::cout << "Error entering a number";
-            return 1;
+            std::exit(1);
         }
     }
 
@@ -24,7 +24,7 @@ int main() {
     std::cout << "Enter P: ";
     if (!(std::cin >> P)) {
         std::cout << "Error entering a number";
-        return 1;
+        std::exit(1);
     }
 
    
