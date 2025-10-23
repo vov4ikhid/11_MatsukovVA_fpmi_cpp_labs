@@ -1,11 +1,17 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
-void BubbleSortAs(int** matrix, int n, int m) {
+bool asc(int a, int b) {
+    return a < b;
+}
+bool desc(int a, int b) {
+    return a > b;
+}
+void BubbleSort(int** matrix, int n, int m, bool (*comp)(int, int)) {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < m - 1; j++) {
         for (int k = 0; k < m - j - 1; k++) {
-            if (matrix[i][k] > matrix[i][k + 1]) {
+            if (comp(matrix[i][k + 1], matrix[i][k])) {
                 int temp = matrix[i][k];
                 matrix[i][k] = matrix[i][k + 1];
                 matrix[i][k + 1] = temp;
@@ -14,25 +20,12 @@ void BubbleSortAs(int** matrix, int n, int m) {
       }
     }
 }
-void BubbleSortDes(int** matrix, int n, int m) {
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m - 1; j++) {
-        for (int k = 0; k < m - j - 1; k++) {
-            if (matrix[i][k] < matrix[i][k + 1]) {
-                int temp = matrix[i][k];
-                matrix[i][k] = matrix[i][k + 1];
-                matrix[i][k + 1] = temp;
-            }
-        }
-      }
-    }
-}
-void SelectionSortAs(int** matrix, int n, int m) {
+void SelectionSort(int** matrix, int n, int m, bool (*comp)(int, int)) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m - 1; j++) {
             int minIndex = j;
             for (int k = j + 1; k < m; k++) {
-                if (matrix[i][k] < matrix[i][minIndex]) {
+                if (comp(matrix[i][k], matrix[i][minIndex])) {
                     minIndex = k;
                 }
             }
@@ -44,42 +37,12 @@ void SelectionSortAs(int** matrix, int n, int m) {
         }
     }
 }
-void SelectionSortDes(int** matrix, int n, int m) {
-     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m - 1; j++) {
-            int maxIndex = j;
-            for (int k = j + 1; k < m; k++) {
-                if (matrix[i][k] > matrix[i][maxIndex]) {
-                    maxIndex = k;
-                }
-            }
-            if (maxIndex != j) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][maxIndex];
-                matrix[i][maxIndex] = temp;
-            }
-        }
-    }
-}
-void InsertionSortAs(int** matrix, int n, int m) {
+void InsertionSort(int** matrix, int n, int m, bool (*comp)(int, int)) {
     for (int i = 0; i < n; i++) {
         for (int j = 1; j < m; j++) {
             int key = matrix[i][j];
             int k = j - 1;
-            while (k >= 0 && matrix[i][k] > key) {
-                matrix[i][k + 1] = matrix[i][k];
-                k--;
-            }
-            matrix[i][k + 1] = key;
-        }
-    }
-}
-void InsertionSortDes(int** matrix, int n, int m) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 1; j < m; j++) {
-            int key = matrix[i][j];
-            int k = j - 1;
-            while (k >= 0 && matrix[i][k] < key) {
+            while (k >= 0 && comp(key, matrix[i][k])) {
                 matrix[i][k + 1] = matrix[i][k];
                 k--;
             }
@@ -120,36 +83,34 @@ int main() {
     std::cout << "Select sorting type(enter number of type): ";
     std::cin >> t;
     
-    if (t = 1) {
-       switch (s) {
-        case 1:
-          BubbleSortAs(matrix, n, m);
-           break;
-        case 2: 
-          SelectionSortAs(matrix, n, m);
-           break;
-        case 3:
-          InsertionSortAs(matrix, n, m);
-           break;
-        default: 
+    if (t == 1) {
+       if (s == 1) {
+          BubbleSort(matrix, n, m, asc);
+       }
+       else if (s == 2) {
+          SelectionSort(matrix, n, m, asc);
+       }
+       else if (s == 3) {
+          InsertionSort(matrix, n, m, asc);
+       }
+        else { 
           std::cout << "Error!!!";
-           break;
+        std::exit(1);
        }
     }
-    else if (t = 2) {
-        switch (s) {
-        case 1:
-          BubbleSortDes(matrix, n, m);
-           break;
-        case 2: 
-          SelectionSortDes(matrix, n, m);
-           break;
-        case 3:
-          InsertionSortDes(matrix, n, m);
-           break;
-        default: 
+    else if (t == 2) {
+        if (s == 1) {
+          BubbleSort(matrix, n, m, desc);
+       }
+       else if (s == 2) {
+          SelectionSort(matrix, n, m, desc);
+       }
+       else if (s == 3) {
+          InsertionSort(matrix, n, m, desc);
+       }
+        else { 
           std::cout << "Error!!!";
-           break;
+        std::exit(1);
        }
     }
     else {
