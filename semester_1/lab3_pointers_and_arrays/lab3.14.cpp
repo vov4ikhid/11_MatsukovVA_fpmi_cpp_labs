@@ -76,10 +76,10 @@ int main() {
         std::cout << "There are no elements after the maximum element by modulus!" << "\n";
       }
      task_3(a, n);
-     
+
     std::cout << "New array: " << "\n";
     for (int i = 0; i < n; i++) {
-        std::cout << a[i] << "\n";
+        std::cout << a[i] << " ";
     }
 
     return 0;
