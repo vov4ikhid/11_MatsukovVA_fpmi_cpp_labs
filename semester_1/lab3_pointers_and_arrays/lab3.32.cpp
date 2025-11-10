@@ -1,7 +1,7 @@
 #include <iostream>
 int task_1(int* a, int n) {
  int change_of_sign = 0;
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n - 1; ++i) {
         bool current = (a[i] >= 0);
         bool next = (a[i + 1] >= 0);
         if (current!= next) {
@@ -13,7 +13,7 @@ int task_1(int* a, int n) {
 long task_2(int* a, int n) {
   int first_0 = -1, second_0 = -1;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         if (a[i] == 0) {
             first_0 = i;
             break;
@@ -21,7 +21,7 @@ long task_2(int* a, int n) {
     }
 
     if (first_0 != -1) {
-        for (int i = first_0 + 1; i < n; i++) {
+        for (int i = first_0 + 1; i < n; ++i) {
             if (a[i] == 0) {
                 second_0 = i;
                 break;
@@ -31,7 +31,7 @@ long task_2(int* a, int n) {
 
     if (first_0 != -1 && second_0 != -1 && second_0 - first_0 > 1) {
         long product = 1;
-        for (int i = first_0 + 1; i < second_0; i++) {
+        for (int i = first_0 + 1; i < second_0; ++i) {
             product *= a[i];
         }
         return product;
@@ -42,7 +42,7 @@ long task_2(int* a, int n) {
 }
 void task_3(int* a, int n, int N) {
    int cur_pos = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         if (a[i] % N == 0) {
             if (i != cur_pos) {
                 int temp = a[i];
@@ -57,8 +57,6 @@ void task_3(int* a, int n, int N) {
 }
 int main() {
     int n;
-
-    
     std::cout << "Enter the number of array elements: ";
     if (!(std::cin >> n) || n <= 0) {
         std::cout << "Error!";
@@ -68,7 +66,7 @@ int main() {
     int* a = new int[n];
 
     std::cout << "Enter " << n << " real numbers: " << "\n";
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         if (!(std::cin >> a[i])) {
             std::cout << "Error!";
             std::exit(1);
@@ -95,7 +93,7 @@ int main() {
     task_3(a, n, N);
 
     std::cout << "New array: ";
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         std::cout << a[i] << " ";
     }
     std::cout << "\n";
