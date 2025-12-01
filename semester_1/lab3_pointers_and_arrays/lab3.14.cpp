@@ -1,51 +1,55 @@
 #include <iostream>
 #include <cmath>
-int task_1(double* a, int n, double P) {
+#include <random>
+int task_1(double* arr, int n, double P) {
     int count_after_P = 0;
     for (int i = 0; i < n; ++i) {
-        if (a[i] > P) {
+        if (arr[i] > P) {
             count_after_P++;
         }
     }
     return count_after_P;
 }
-double task_2(double* a, int n) {
+double task_2(double* arr, int n) {
    int index_max = 0;
-    double max_abs = std::abs(a[0]);
+    double max_abs = std::abs(arr[0]);
 
     for (int i = 1; i < n; ++i) {
-        if (std::abs(a[i]) > max_abs) {
-            max_abs = std::abs(a[i]);
+        if (std::abs(arr[i]) > max_abs) {
+            max_abs = std::abs(arr[i]);
             index_max = i;
         }
     }
 
     if (index_max == n - 1) {
-        
-        return 0.0;
+        throw "There are no elements after the maximum element by modulus!";
     }
     else {
         double product = 1.0;
         for (int i = index_max + 1; i < n; ++i) {
-            product *= a[i];
+            product *= arr[i];
         }
         return product;
     }
 }
-void task_3(double* a, int n) {
+void task_3(double* arr, int n) {
   int index_of_negatives = 0;
     for (int i = 0; i < n; ++i) {
-        if (a[i] < 0) {
-            double temp = a[i];
-            a[i] = a[index_of_negatives];
-            a[index_of_negatives] = temp;
+        if (arr[i] < 0) {
+            if (i != index_of_negatives) {
+                double negative_value = arr[i];
+                for (int j = i; j > index_of_negatives; --j) {
+                    arr[j] = arr[j - 1];
+                }
+                arr[index_of_negatives] = negative_value;
+            }
             index_of_negatives++;
         }
     }
 }
 int main() {
     const int MAX_SIZE = 1000;
-    double a[MAX_SIZE];
+    double arr[MAX_SIZE];
     int n;
 
     std::cout << "Enter the number of array elements(max = 1000): ";
@@ -53,33 +57,60 @@ int main() {
         std::cout << "Error entering a number";
         std::exit(1);
     }
-
-    std::cout << "Enter " << n << " real numbers: " << "\n";
-    for (int i = 0; i < n; ++i) {
-        if (!(std::cin >> a[i])) {
-            std::cout << "Error entering a number";
-            std::exit(1);
+    int t;
+    std::cout << "Choose the method for filling the array:" << "\n" << "1.from the keyboard" << "\n" << "2.random numbers" << "\n";
+    std::cin >> t;
+    switch (t) {
+        case 1: 
+         std::cout << "Enter " << n << " real numbers: " << "\n";
+           for (int i = 0; i < n; ++i) {
+             if (!(std::cin >> arr[i])) {
+              std::cout << "Error entering a number";
+              std::exit(1);
+             }
+           }
+           break;
+         case 2:
+         int a, b;
+         std::cout << "Enter the interval boundaries[a, b]: ";
+         if (!(std::cin >> a >> b)) {
+         std::cout << "Error entering a number";
+         std::exit(1);
+         }
+         if (a > b) {
+            int temp = a;
+            a = b;
+            b = temp;
+         }
+        std::mt19937 gen(128731);
+        std::uniform_int_distribution<int> dist(a, b);
+        for (int i = 0; i < n; ++i) {
+        arr[i] = dist(gen);     
         }
+        break;
     }
-
+       std::cout << "Original array: " << "\n";
+    for (int i = 0; i < n; ++i) {
+        std::cout << arr[i] << " ";
+    }
     double P;
-    std::cout << "Enter P: ";
+    std::cout << "\nEnter P: ";
     if (!(std::cin >> P)) {
         std::cout << "Error entering a number";
         std::exit(1);
     }
-    std::cout << "Count of elements larger than " << P << ": " << task_1(a, n, P) << "\n";
-      if (task_2(a, n) != 0.0) {
-         std::cout << "Product of elements after the maximum in absolute value: " << task_2(a, n) << "\n";
+    std::cout << "Count of elements larger than " << P << ": " << task_1(arr, n, P) << "\n";
+      try {
+         std::cout << "Product of elements after the maximum in absolute value: " << task_2(arr, n) << "\n";
       }
-      else {
-        std::cout << "There are no elements after the maximum element by modulus!" << "\n";
+      catch (const char* error_msg) {
+        std::cout << error_msg << "\n";
       }
-     task_3(a, n);
+     task_3(arr, n);
 
     std::cout << "New array: " << "\n";
     for (int i = 0; i < n; ++i) {
-        std::cout << a[i] << " ";
+        std::cout << arr[i] << " ";
     }
 
     return 0;
