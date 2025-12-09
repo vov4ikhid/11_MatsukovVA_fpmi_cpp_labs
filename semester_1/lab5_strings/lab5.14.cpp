@@ -1,32 +1,62 @@
 #include <iostream>
-#include <vector>
 #include <string>
+
 bool isLetter(char c) {
-  return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
-} 
-std::vector<std::string> WordSeparation(const std::string string) {
-  std::vector<std::string> words;
-   if(string.empty()) {
-     return words;
-   }
-   std::string word;
-    for (int i = 0; i < string.length(); ++i) {
-      char c = string[i];
-      if(isLetter(c)) {
-        word += c;
-      }
-      else if(!word.empty()) {
-        words.push_back(word);
-        word = "";
-      }
-    }
-    if(!word.empty()) {
-        words.push_back(word);
-    }
-    return words;
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
+
+bool getWord(const std::string& str, size_t& i, std::string& word) {
+    word = "";
+    
+    while (i < str.length() && !isLetter(str[i])) {
+        i++;
+    }
+    
+    if (i >= str.length()) {
+        return false;
+    }
+    
+    while (i < str.length() && isLetter(str[i])) {
+        word += str[i];
+        i++;
+    }
+    
+    return true;
+}
+
+std::string mergeStrings(const std::string& str1, const std::string& str2) {
+    std::string str3;
+    size_t i = 0, j = 0;
+    std::string word1, word2;
+    bool has_word1, has_word2;
+    
+    while (true) {
+        has_word1 = getWord(str1, i, word1);
+        has_word2 = getWord(str2, j, word2);
+        
+        if (!has_word1 && !has_word2) {
+          break;
+        }
+        
+        if (!str3.empty()) {
+          str3 += " ";
+        }
+        if (has_word1) {
+          str3 += word1;
+        }
+        if (has_word2) {
+            if (has_word1) {
+              str3 += " ";
+            }
+            str3 += word2;
+        }
+    }
+    
+    return str3;
+}
+
 int main() {
-  std::string str1, str2;
+    std::string str1, str2;
     std::cout << "Enter first string: ";
       if(!std::getline(std::cin, str1)) {
         std::cout << "Error of string input";
@@ -50,31 +80,10 @@ int main() {
     std::cout << "Strings are empty";
     std::exit(1);
   }
-  std::vector<std::string> words1 = WordSeparation(str1);
-  std::vector<std::string> words2 = WordSeparation(str2);
-  std::string str3;
-    int count_of_words = words1.size();
-    if (words2.size() < count_of_words) { 
-      count_of_words = words2.size();
-    }
-  for (int i = 0; i < count_of_words; ++i) {
-    if (!str3.empty()) { 
-    str3 += " ";
-    }
-    str3 += words1[i] + " " + words2[i];
-  }
-  for (int i = 0; i < count_of_words; ++i) {
-    if (!str3.empty()) {
-      str3 += " ";
-    }
-    str3 += words1[i];
-  }
-  for (int i = 0; i < count_of_words; ++i) {
-    if (!str3.empty()) {
-      str3 += " ";
-    }
-    str3 += words2[i];
-  }
-  std::cout << "New string: " << str3 << "\n";
-  return 0;
+    
+    std::string str3 = mergeStrings(str1, str2);
+    
+    std::cout << "\nNew string: " << str3 << std::endl;
+    
+    return 0;
 }
